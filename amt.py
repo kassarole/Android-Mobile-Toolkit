@@ -1,3 +1,9 @@
+#amt.py
+"""
+Code to interact with an android device using ADB
+Written by Kevin Rode
+Last Updated Sep 27 2019
+"""
 import adbutils
 import os
 import re
