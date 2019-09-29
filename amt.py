@@ -1,4 +1,4 @@
-#amt.py
+# amt.py
 """
 Code to interact with an android device using ADB
 Written by Kevin Rode
@@ -11,6 +11,8 @@ import re
 import time
 import requests
 from lxml import html
+
+
 def adb_start():
     if "platform-tools" in os.environ['PATH']:
         print("ADB found in PATH")
@@ -34,7 +36,7 @@ def twrp_download(d):
             found = 1
     if found != 1:
         cpu = d.shell('cat /proc/cpuinfo | grep Hardware')
-        cpu = cpu.replace(" ","")
+        cpu = cpu.replace(" ", "")
         cpu = re.sub(r'(.+:)', '', cpu)
         r = requests.get('https://dl.twrp.me/'+cpu)
         tree = html.fromstring(r.text)
@@ -85,17 +87,18 @@ def reboot_bootloader():
 
 
 def root_device():
-        adb = "platform-tools\\adb.exe"
-        fastboot = "platform-tools\\fastboot.exe"
-        files = os.listdir(os.curdir)
-        for file in files:
-            if "twrp" in file:
-                twrp = file
-        os.system(fastboot+ " boot "+twrp)
-        input("Press Enter when TWRP has booted")
-        print("Follow the onscreen directions to install Magisk (Located at the bottom of the install window)")
-        print("After Magisk installs click [Reboot] then [Do Not Install]")
-        input("Press Enter when the device has rebooted")
+    adb = "platform-tools\\adb.exe"
+    fastboot = "platform-tools\\fastboot.exe"
+    files = os.listdir(os.curdir)
+    for file in files:
+        if "twrp" in file:
+            twrp = file
+    os.system(fastboot + " boot "+twrp)
+    input("Press Enter when TWRP has booted")
+    print("Follow the onscreen directions to install Magisk (Located at the bottom of the install window)")
+    print("After Magisk installs click [Reboot] then [Do Not Install]")
+    input("Press Enter when the device has rebooted")
+
 
 def menu():
     while True:
@@ -113,6 +116,8 @@ def menu():
         elif int(choice) == 99:
             print("Goodbye!")
             sys.exit()
+
+
 def show_help():
     print("Android Mobile Toolkit v1.1")
     print("Written by Kevin Rode (kevroded)")
