@@ -2,8 +2,8 @@
 This is the beginning of a program to root and extract data from android devices using adb
 
 ## Features
-+Automatically detect the correct version of TWRP for a plugged in device
-+Root any device that is TWRP compatible
++ Automatically detect the correct version of TWRP for a plugged in device
++ Root any device that is TWRP compatible
 
 ## To-Do
 +~~Implement a menu system~~\
