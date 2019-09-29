@@ -11,7 +11,6 @@ import re
 import time
 import requests
 from lxml import html
-from pyfiglet import Figlet
 def adb_start():
     if "platform-tools" in os.environ['PATH']:
         print("ADB found in PATH")
@@ -100,8 +99,6 @@ def root_device():
 
 def menu():
     while True:
-        banner = Figlet(font='Standard')
-        print(banner.renderText('Android Mobile Toolkit'))
         print("[1] Root Device (WIP)\n[2] Extract Data (Coming Soon)\n[99] Quit")
         choice = input("Please select a number: ")
         if int(choice) == 1:
