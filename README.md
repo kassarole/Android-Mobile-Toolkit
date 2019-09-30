@@ -16,7 +16,7 @@ A compiled version is available in the releases tab
 ## Changelog
 v1.0.1
 + Updated zip with correct files for rooting
-+ Spelling fixes
++ Spelling fixes\
 v1.0
 + Initial version
 + Root any twrp compatible device
