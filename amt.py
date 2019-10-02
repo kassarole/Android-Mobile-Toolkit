@@ -6,21 +6,24 @@ Last Updated Sep 28 2019
 """
 import sys
 from helpers import root
+from helpers import extract
 
 
 def menu():
     while True:
-        print("[1] Root Device (WIP)\n[2] Extract Data (Coming Soon)\n[99] Quit")
+        print("[1] Root Device\n[2] Check root\n[3] Extract Data (WIP)\n[99] Quit")
         choice = input("Please select a number: ")
         if int(choice) == 1:
             root.root_device()
         elif int(choice) == 2:
-            print("Data extraction is coming soon.")
-            time.sleep(2)
+            root.root_check()
+        elif int(choice) == 3:
+            extract.extract_menu()
         elif int(choice) == 99:
             print("Goodbye!")
             sys.exit()
-
+        else:
+            print("Unknown input")
 
 def show_help():
     print("Android Mobile Toolkit v1.1")
@@ -33,6 +36,8 @@ def show_help():
     print(" -i              : alias for --interactive")
     print(" --root          : root a connected Android device")
     print(" -r              : alias for --root")
+    print(" --check-root    : checks if the device is rooted")
+    print(" -Ae             : Extract data in app extract mode. Add -o to specify an output directory")
     print(" --help          : print this message")
     print(" -h              : alias for --help")
 
@@ -45,6 +50,15 @@ def main():
         root.root_device()
     elif "--help" in sys.argv[1:] or "-h" in sys.argv[1:]:
         show_help()
+    elif "--check-root" in sys.argv[1:]:
+        root.root_check()
+    elif "-Ae" in sys.argv[1:]:
+        if "-o" in sys.argv[1:]:
+            output_index = sys.argv.index("-o")
+            output = sys.argv[output_index+1]
+            extract.app_extract(output)
+        else:
+            extract.app_extract()
     else:
         show_help()
 

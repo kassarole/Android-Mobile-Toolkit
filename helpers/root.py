@@ -40,9 +40,11 @@ def twrp_download(d):
                 downloads.append(i)
         url_to_download = "https://dl.twrp.me"+downloads[0]
         url_to_download = url_to_download.replace('.html', '')
-        print("Use this link to download twrp for your connected device: "+url_to_download)
-        print("Ensure that the downloaded file is moved to the same folder as the script before continuing")
-        input("Press Enter to continue...")
+        s = requests.Session()
+        s.headers.update({'referer':url_to_download})
+        img = s.get(url_to_download)
+        with open("twrp.img",'wb') as f:
+            f.write(img.content)
         files = os.listdir(os.curdir)
         for file in files:
             if "twrp" in file:
@@ -95,3 +97,12 @@ def root_device():
     print("Follow the onscreen directions to install Magisk (Located at the bottom of the install window)")
     print("After Magisk installs click [Reboot] then [Do Not Install]")
     input("Press Enter when the device has rebooted")
+
+
+def root_check():
+    device = adb_connect()
+    rootcheck = device.shell("ls /sbin | grep su")
+    if rootcheck != None:
+        print("Device is rooted")
+    else:
+        print("Device is not rooted")

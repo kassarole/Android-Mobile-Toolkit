@@ -15,10 +15,15 @@ A compiled version is available in the releases tab
   + Add options to extract all data on the phone
 
 ## Changelog
+v1.1
+  + App extraction added
+  + Downloading twrp now happens without user interaction
+  + Root checking option added
+
 v1.0.1
   + Updated zip with correct files for rooting
   + Spelling fixes
-  
+
 v1.0
   + Initial version
   + Root any twrp compatible device
