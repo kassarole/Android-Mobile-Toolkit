@@ -2,7 +2,6 @@
 """
 Code to interact with an android device using ADB
 Written by Kevin Rode
-Last Updated Sep 28 2019
 """
 import sys
 from helpers import root

@@ -28,9 +28,7 @@ def twrp_download(d):
         if "twrp" in file:
             found = 1
     if found != 1:
-        cpu = d.shell('cat /proc/cpuinfo | grep Hardware')
-        cpu = cpu.replace(" ", "")
-        cpu = re.sub(r'(.+:)', '', cpu)
+        cpu = d.shell('getprop ro.product.board')
         r = requests.get('https://dl.twrp.me/'+cpu)
         tree = html.fromstring(r.text)
         urls = tree.xpath('//a/@href')
