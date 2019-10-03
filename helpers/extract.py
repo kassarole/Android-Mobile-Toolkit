@@ -12,7 +12,6 @@ def recovery_boot():
     else:
         device = root.adb_connect()
         root.twrp_download(device)
-        root.push_files(device)
         root.reboot_bootloader()
         adb = "platform-tools\\adb.exe"
         fastboot = "platform-tools\\fastboot.exe"
@@ -20,6 +19,15 @@ def recovery_boot():
         for file in files:
             if "twrp" in file:
                 twrp = file
+            else:
+                twrploc = 0
+                while twrploc == 0:
+                    input("TWRP not found. Please ensure it is in the correct location and press enter to continue. ")
+                    files = os.listdir(os.curdir)
+                    for file in files:
+                        if "twrp" in file:
+                            twrp = file
+                            twrploc = 1
             os.system(fastboot + " boot "+twrp)
             input("Press Enter when TWRP has booted")
 
@@ -44,7 +52,8 @@ def download_app(o=None):
         else:
             os.system(adb+" pull /sdcard/"+app)
     else:
-        os.makedirs(o)
+        if os.path.isdir(o) == False:
+            os.makedirs(o)
         os.system(adb+" pull /sdcard/"+app+" "+o)
 
 
