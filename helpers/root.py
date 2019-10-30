@@ -36,24 +36,28 @@ def twrp_download(d):
         for i in urls:
             if "img" in i:
                 downloads.append(i)
-        url_to_download = "https://dl.twrp.me"+downloads[0]
-        url_to_download = url_to_download.replace('.html', '')
-        s = requests.Session()
-        s.headers.update({'referer':url_to_download})
-        img = s.get(url_to_download)
-        with open("twrp.img",'wb') as f:
-            f.write(img.content)
-        files = os.listdir(os.curdir)
-        for file in files:
-            if "twrp" in file:
-                found = 1
-        while found != 1:
-            print("File not found. Please confirm it has been moved to the correct directory")
-            input("Press Enter to continue...")
-            files = os.listdir(os.curdir)
-            for file in files:
-                if "twrp" in file:
-                    found = 1
+                url_to_download = "https://dl.twrp.me"+downloads[0]
+                url_to_download = url_to_download.replace('.html', '')
+                s = requests.Session()
+                s.headers.update({'referer':url_to_download})
+                img = s.get(url_to_download)
+                with open("twrp.img",'wb') as f:
+                    f.write(img.content)
+                files = os.listdir(os.curdir)
+                for file in files:
+                    if "twrp" in file:
+                        found = 1
+                while found != 1:
+                    print("File not found. Please confirm it has been moved to the correct directory")
+                    input("Press Enter to continue...")
+                    files = os.listdir(os.curdir)
+                    for file in files:
+                        if "twrp" in file:
+                            found = 1
+            else:
+                print("Error. Returning to the main menu")
+                time.sleep(2)
+
     else:
         print("twrp already downloaded")
 
