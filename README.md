@@ -1,3 +1,4 @@
+# This Code is undergoing a rewrite and is currently not functioning correctly. Check back soon for the updated version
 # Android-Mobile-Toolkit
 This is a python based program to root and extract data from android devices using adb
 
